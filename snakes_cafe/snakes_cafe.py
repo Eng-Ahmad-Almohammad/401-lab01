@@ -58,7 +58,7 @@ print('** What would you like to order? **')
 print('***********************************') 
 
 orders=[]
-
+orders_without_duplication= []
 
 while True:
     user_input = input('>')
@@ -68,11 +68,12 @@ while True:
         if (len(orders)==0):
             print ('There is no order yet')
         else:
-            for i in orders:
+            for i in orders_without_duplication:
                 print(f'** {orders.count(i)} order of {i} **')
     else:
         if (user_input in all_items):
                 orders.append(user_input)
+                orders_without_duplication = dict.fromkeys(orders)
                 if(orders.count(user_input)>1):
                     repetition = orders.count(user_input)
                     print(f'** {repetition} order of {user_input} have been added to your meal **')
