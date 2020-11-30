@@ -57,29 +57,32 @@ print('***********************************')
 print('** What would you like to order? **') 
 print('***********************************') 
 
-orders=[]
-orders_without_duplication= []
+orders={}
+# orders_without_duplication= []
+# {
+#     "Wings": 2,
+#     "Coffee": 3,
+#     "Ice Cream": 1
+# }
 
 while True:
-    user_input = input('>')
+    user_input = input('> ')
     if (user_input=='quit'):
         break
-    elif (user_input == 'summary'):
+    elif (user_input == 'summary'): # Stretch goal
         if (len(orders)==0):
             print ('There is no order yet')
         else:
-            for i in orders_without_duplication:
-                print(f'** {orders.count(i)} order of {i} **')
+            for order in orders:
+                print(f'** {orders[order]} orders of {order} **')
     else:
         if (user_input in all_items):
-                orders.append(user_input)
-                orders_without_duplication = dict.fromkeys(orders)
-                if(orders.count(user_input)>1):
-                    repetition = orders.count(user_input)
-                    print(f'** {repetition} order of {user_input} have been added to your meal **')
-                else:
-                    print(f'** 1 order of {user_input} have been added to your meal **')
-        else:
+            if user_input in orders:
+                orders[user_input] = orders[user_input] + 1
+            else:
+                orders[user_input] = 1
+            print(f'** {orders[user_input]} orders of {user_input} have been added to your meal **')
+        else: # Stretch goal
             print('Sorry your order is not found!!')
 
 
